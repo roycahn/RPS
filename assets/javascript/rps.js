@@ -52,7 +52,7 @@ $("#start-btn").on("click", function() {
     $(".weapons").css("visibility","visible");
     }
     else {
-      alert("Game Full");
+      console.log("Game Full");
     }
   
   
@@ -65,6 +65,9 @@ $(".weapons button").on("click", function() {
   console.log(this.id);
   game.player.weapon = this.id;
 
+  //update firebase with weapon
+  game.pushKey.update({weapon: game.player.weapon});
+
   //change the button color of chosen weapon
   $(this).css("background-color", "#f47121");
 
@@ -75,9 +78,9 @@ $(".weapons button").on("click", function() {
       var winner  = whoWon(weaponsArray);
 
       if (winner === "Tie") {
-        alert("The game was a Tie")
+        console.log("The game was a Tie")
       } else
-      alert("Player: " + winner + " Won!");
+      console.log("Player: " + winner + " Won!");
 
  }); // .weapons on click
 
@@ -101,10 +104,10 @@ function addPlayer(){
           console.log("The read failed: " + errorObject.code); 
     });
 
-game.player.playerNumber = false;
 
 playersRef.on("value", function(snapshot) {
 
+  game.player.playerNumber = false;
   if (snapshot.numChildren() === 1){
     game.player.playerNumber = 1;
 
@@ -119,7 +122,9 @@ playersRef.on("value", function(snapshot) {
       game.pushKey.update({playerNumber: game.player.playerNumber});
     }
 
-  console.log(game.player.name+" is "+game.player.playerNumber);
+  console.log(game.player.name+" is "+game.player.playerNumber +" Weapon is: " +game.player.weapon);
+
+  
   },
 
   
@@ -150,8 +155,7 @@ function(errorObject) {
   function(errorObject) {
     console.log("The read failed: " + errorObject.code);
     });
-//update firebase
-  game.pushKey.update({weapon: game.player.weapon});
+
  
   
 
@@ -179,7 +183,7 @@ function whoWon(tools){
     } else {
         return 2;
     }
-}
+}// function whoWon
 
 
 // Initialize Firebase
