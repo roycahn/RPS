@@ -1,35 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>Rock Paper Scisors</title>
-	<script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+		<title>Rock Paper Scisors</title>
+		<!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+		
+		
+    <!-- Custom styles for this template jumbotron -->
+    <link href="assets/css/jumbotron.css" rel="stylesheet">
 
+		<!-- Custom styles for rest of page -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		
+		<!-- Firebase -->
+		<script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+		
+		<!-- JQuery -->
+		<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+		
+	</head>
 
-<body>
-	
+	<body>
+		<div class="jumbotron">
+			<h1 class="text-center">Rock Paper Scissors</h1>
+		</div>
+		<div class="container-fluid">
+		<div class="row">
 
+			<div class="col-md-4"> </div>
+			<div class="col-md-4">
+			 <!-- Player Name input Box which gets opaqued to show Welcome Message and later whose turn it is or Waiting for other player to choose -->
+				
+				<div class="input-group">
+					<form id="p-name">
+			      <input required type="text" class="form-control" id="player-name" placeholder="Player Name">
+			      <span class="input-group-btn">
+	        		<button id="start-btn" class="btn btn-primary" type="submit" >Start</button>
+	       		</span>
+	       	</form>
+				</div>  <!-- Input Group -->
+			<!-- This is the box to show the Users name and whose turn it is -->
+				<div class = "game-info" id="game-state">
+					<div id ="name"> </div>
+				</div>
+			</div>  <!-- col-md4 -->
+	</div> <!-- row -->
+		
+	<!-- 3 columns: My choice, Who won, Other Play Played -->
+	<div class="row">
+		<div class="col-md-4">
+			<div class="weapons">
+				<h3>Choose a Weapon!</h3>
+			  <button type="button" class="btn btn-primary" id="rock">Rock</button>
+			  <button type="button" class="btn btn-primary" id="paper">Paper</button>
+			  <button type="button" class="btn btn-primary" id="scissors">Scissors</button>
+			</div>
+		</div> <!-- col-md-4 -->
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+		</div>
+	</div>
+</div>
 
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/javascript/vendor/jquery.min.js"><\/script>')</script>
+    <script src="assets/javascript/bootstrap.min.js"></script>
 
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCld0zFBstm3qtZ5knff-aSaeEVpaiMPAo",
-    authDomain: "test-66dbf.firebaseapp.com",
-    databaseURL: "https://test-66dbf.firebaseio.com",
-    storageBucket: "test-66dbf.appspot.com",
-    messagingSenderId: "171076085428"
-  };
-  firebase.initializeApp(config);
+    <!-- Custom JavaScript -->
+    <script src="assets/javascript/rps.js"></script>
 
-  var database = firebase.database();
-  var clickcounter = 0;
-
-
-  
-
-		</script>
 	</body>
 </html>
