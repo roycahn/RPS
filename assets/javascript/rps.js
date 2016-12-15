@@ -59,24 +59,27 @@ $(".weapons button").on("click", function() {
         var winner  = whoWon(weaponsArray);
 
         if (winner === "Tie") {
+          $(".whowon").html("The Game was a TIE");
           console.log("The game was a Tie");
           game.player.ties ++;
           game.pushKey.update({ties: game.player.ties});
         } else
         
-        if(game.player.playerNumber = winner ){
-          
+        if(game.player.playerNumber === winner ){
+          $(".whowon").html("The Winner is Player # " +winner);
           console.log("Player: " + winner + " Won!");
           game.player.wins ++;
           game.pushKey.update({wins: game.player.wins});
         }
         else {
-          console.log("Player: " + winner + " LOST!");
+          $(".whowon").html("The Winner is Player # " +winner);
+          console.log("Player: " + winner + " Lost!");
           game.player.losses ++;
           game.pushKey.update({losses: game.player.losses});
 
         }
       } //if both weapons selected
+
 
  }); // .weapons on click
 
@@ -122,6 +125,26 @@ playersRef.on("value", function(snapshot) {
 
   console.log(game.player.name+" is "+game.player.playerNumber +" Weapon is: " +game.player.weapon);
 
+  var pkey = "" 
+  var pval = snapshot.val();
+  weaponsArray =[];
+  
+  //create an array with each player's weapon
+  Object.keys(pval).forEach(function (key) {
+    pkey = pval[key];
+    game.player.weapon = pkey['weapon'];
+    
+    /*game.player.chat = pkey['chat'];
+    game.player.losses = pkey['losses'];
+    game.player.name = pkey['name'];
+    game.player.playerNumber = pkey['playerNumber'];
+    game.player.ties = pkey['ties'];
+    game.player.wins = pkey['wins'];*/
+
+    console.log("Player Name: " + pkey['name'] + " Player Number: " + pkey['playerNumber'] + "   Weapon: " + pkey['weapon']);
+    weaponsArray.push(pkey['weapon']);
+  }); // for each
+console.log(weaponsArray);
   
   },
 
@@ -136,36 +159,6 @@ function(errorObject) {
   
 
 //} //function addPlayer
-
-
-
-
-playersRef.on("value", function(snapshot) {
-
-  var pkey = "" 
-  var pval = snapshot.val();
-  weaponsArray =[];
-  Object.keys(pval).forEach(function (key) {
-    pkey = pval[key];
-    game.player.chat = pkey['chat'];
-    game.player.losses = pkey['losses'];
-    game.player.name = pkey['name'];
-    game.player.playerNumber = pkey['playerNumber'];
-    game.player.ties = pkey['ties'];
-    game.player.weapon = pkey['weapon'];
-    game.player.wins = pkey['wins'];
-
-    console.log("Player Name: " + pkey['name'] + " Player Number: " + pkey['playerNumber'] + "   Weapon: " + pkey['weapon']);
-    weaponsArray.push(pkey['weapon']);
-  }); // for each
-console.log(weaponsArray);
-
-
-},
-function(errorObject) {
-console.log("The read failed: " + errorObject.code);
-
-}); // on value
 
 
 
@@ -228,6 +221,6 @@ function initPlayer(player){
   
  return pushKey
 
-} //function setFireBase
+} //function ititPLayer 
 
   

@@ -7,7 +7,7 @@
 	width:	60%;
 }
 
-.game-info{
+.game-info  {
 	font-size: 30px;
 	border-style: double;
     text-align: center;
@@ -15,6 +15,10 @@
     margin-top: 10px;
 }
 
-.btn btn-primary:active {
-    color: red;
+.whowon  {
+	font-size: 30px;
+	
+    text-align: center;
+    margin-left: 25px;
+    margin-top: 10px;
 }
